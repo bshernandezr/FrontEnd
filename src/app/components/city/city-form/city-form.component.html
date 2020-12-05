@@ -1,0 +1,47 @@
+<div class="col-md-4">
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]='cityForm' (submit)="onSubmit()">
+        <div class="form-group">
+          <label>Id*</label>
+          <input [class]='(cityForm.controls["id"].invalid && submitFlag) ? "form-control error":"form-control"'
+            [readOnly]="editFlag" placeholder="Id" type="number" formControlName="id">
+          <div class="focusMessage standarMessage" *ngIf="cityForm.controls['id'].invalid && submitFlag">
+            Id must be a positive value.
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Name*</label>
+          <input [class]='(cityForm.controls["name"].invalid && submitFlag) ? "form-control error":"form-control"'
+            placeholder="Name" type="text" formControlName="name">
+        </div>
+        <div class="form-group">
+          <label>Population*</label>
+          <input [class]='(cityForm.controls["population"].invalid && submitFlag) ? "form-control error":"form-control"'
+            placeholder="1" type="number" formControlName="population">
+          <div class="focusMessage standarMessage" *ngIf="cityForm.controls['population'].invalid && submitFlag">
+            Population must be greather than 0.
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Recommended Hotel*</label>
+          <input
+            [class]='(cityForm.controls["recommendedHotel"].invalid && submitFlag) ? "form-control error":"form-control"'
+            placeholder="Hotel" type="text" formControlName="recommendedHotel">
+        </div>
+        <div class="form-group">
+          <label>Touristic Place*</label>
+          <input
+            [class]='(cityForm.controls["touristicPlace"].invalid && submitFlag) ? "form-control error":"form-control"'
+            placeholder="place" type="text" formControlName="touristicPlace">
+        </div>
+        <div class="form-group">
+          <label [class]='submitFlag?  "focusMessage standardMessage":"standardMessage"'>
+            All spaces with * are required
+          </label>
+          <input [autofocus]='submitFlag' type="submit" class="form-control btn btn-success" value="Crear">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

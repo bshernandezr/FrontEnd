@@ -1,0 +1,10 @@
+.error {
+  border: 1px solid red;
+}
+.standardMessage {
+  font-size: 0.9em;
+  float: right;
+}
+.focusMessage {
+  color: red;
+}

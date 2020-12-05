@@ -1,0 +1,81 @@
+<div class="col-md-4">
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]='touristForm' (submit)="onSubmit()">
+        <div class="form-group">
+          <label>Id*</label>
+          <input [class]='(touristForm.controls["id"].invalid && submitFlag) ? "form-control error": "form-control"'
+            [readOnly]="editFlag" placeholder="1" type="number" formControlName="id">
+          <div class="standardMessage focusMessage" *ngIf="touristForm.controls['id'].invalid && submitFlag">
+            *Id must be a positive value.
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Name*</label>
+          <input [class]='(touristForm.controls["name"].invalid && submitFlag) ? "form-control error": "form-control"'
+            type="text" placeholder="Full Name" formControlName="name">
+        </div>
+        <div class="form-group">
+          <label>Id Type*</label>
+          <select class="form-control" formControlName="idType">
+            <option [selected] [value]="'CC'">CC</option>
+            <option [value]="'RC'">RC</option>
+            <option [value]="'TI'">TI</option>
+            <option [value]="'PA'">PA</option>
+            <option [value]="'CE'">CE</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>BirthDate*</label>
+          <input
+            [class]='(touristForm.controls["birthDate"].invalid && submitFlag) ? "form-control error": "form-control"'
+            type="date" formControlName="birthDate">
+        </div>
+        <div class="form-group">
+          <label>Gender*</label>
+          <select class="form-control" formControlName="gender">
+            <option [value]="'M'">M</option>
+            <option [value]="'F'">F</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Travel budget($US)*</label>
+          <input
+            [class]='(touristForm.controls["travelBudget"].invalid && submitFlag) ? "form-control error": "form-control"'
+            placeholder="0" type="number" formControlName="travelBudget">
+          <div class="standardMessage focusMessage"
+            *ngIf="touristForm.controls['travelFrecuency'].invalid && submitFlag">
+            *Travel budget must be greater than 0.
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Travel frecuency(in months)*</label>
+          <input
+            [class]='(touristForm.controls["travelFrecuency"].invalid && submitFlag) ? "form-control error": "form-control"'
+            placeholder="0" type="number" formControlName="travelFrecuency">
+          <div class="standardMessage focusMessage"
+            *ngIf="touristForm.controls['travelFrecuency'].invalid && submitFlag">
+            *Travel frecuency must be between 1 and 36 months.
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Destination*</label>
+          <select
+            [class]='(touristForm.controls["destination"].invalid && submitFlag) ? "form-control error": "form-control"'
+            formControlName="destination">
+            <option *ngFor="let city of cities" [value]="city.name">{{city.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Credit Card</label>
+          <input class="form-control" type="checkbox" formControlName="creditCard">
+        </div>
+        <div class="form-group">
+          <label [class]='submitFlag?  "focusMessage standardMessage":"standardMessage"'>
+            All spaces with * are required</label>
+          <input [autofocus]='submitFlag' type="submit" class="form-control btn btn-success" value="Crear">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="col-md-3">
+  <form [formGroup]='filterForm'>
+    <div class="form-group">
+      <label>Filter by id tourist</label>
+      <input class="form-control" placeholder="Id Tourist" type="text" (change)="onChangeTouristFilter()"
+        formControlName="idTourist" [readOnly]='cityFilterFlag'>
+    </div>
+    <div class="form-group">
+      <label>Filter by city name</label>
+      <input class="form-control" placeholder="City name" type="text" (change)="onChangeCityFilter()"
+        formControlName="cityName" [readOnly]='touristFilterFlag'>
+    </div>
+  </form>
+</div>
+
+<div class="float-right">
+  <button class="btn btn-success" routerLink="/Travel/create">Add travel</button>
+  <br>
+  <br>
+</div>
+
+<table class="table table-bordered">
+  <caption>Travels table</caption>
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Id City</th>
+      <th scope="col">City Name</th>
+      <th scope="col">Id Tourist</th>
+      <th scope="col">Date</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let travel of travels">
+      <td>{{travel.id}}</td>
+      <td>{{travel.idCity}}</td>
+      <td>{{travel.cityName}}</td>
+      <td>{{travel.idTourist}}</td>
+      <td>{{travel.travelDate}}</td>
+      <td>
+        <button class="btn btn-success" [routerLink]="['/Travel/edit', travel.id]">
+          <em class="far fa-edit"></em>
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteTravel(travel.id)">
+          <em class="far fa-trash-alt"></em>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

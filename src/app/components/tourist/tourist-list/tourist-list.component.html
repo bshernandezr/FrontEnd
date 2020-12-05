@@ -1,0 +1,44 @@
+<div class="float-right">
+  <button class="btn btn-success" routerLink="/Tourist/create">Add tourist</button>
+  <br>
+  <br>
+</div>
+<table class="table table-bordered">
+  <caption>Tourist table</caption>
+  <tbody>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Type Id</th>
+      <th scope="col">BirthDate</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Destination</th>
+      <th scope="col">Travel Budget</th>
+      <th scope="col">Travel Frecuency</th>
+      <th scope="col">Credit Card</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+    <tr *ngFor="let tourist of tourists">
+      <td>{{tourist.id}}</td>
+      <td>{{tourist.name}}</td>
+      <td>{{tourist.idType}}</td>
+      <td>{{tourist.birthDate}}</td>
+      <td>{{tourist.gender}}</td>
+      <td>{{tourist.destination}}</td>
+      <td>{{tourist.travelBudget}}</td>
+      <td>{{tourist.travelFrecuency}}</td>
+      <td>{{(tourist.creditCard) ? "Yes":"No"}}</td>
+      <td>
+        <button class="btn btn-success" [routerLink]="['/Tourist/edit', tourist.id]">
+          <em class="far fa-edit"></em>
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteTourist(tourist.id)">
+          <em class="far fa-trash-alt"></em>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

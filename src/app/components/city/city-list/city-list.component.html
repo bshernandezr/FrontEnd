@@ -1,0 +1,39 @@
+<div class="float-right">
+  <button class="btn btn-success" routerLink="/City/create">Add city</button>
+  <br>
+  <br>
+</div>
+
+<table class="table table-bordered">
+  <caption>Cities table</caption>
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Population</th>
+      <th scope="col">Touristic Place</th>
+      <th scope="col">Recommended Hotel</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let city of cities">
+      <td>{{city.id}}</td>
+      <td>{{city.name}}</td>
+      <td>{{city.population}}</td>
+      <td>{{city.touristicPlace}}</td>
+      <td>{{city.recommendedHotel}}</td>
+      <td>
+        <button class="btn btn-success" [routerLink]="['/City/edit', city.id]">
+          <em class="far fa-edit"></em>
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-danger"  (click)="deleteCity(city.id)">
+          <em class="far fa-trash-alt"></em>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

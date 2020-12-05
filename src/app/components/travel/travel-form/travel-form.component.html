@@ -1,0 +1,39 @@
+<div class="col-md-4">
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]='travelForm' (submit)="onSubmit()">
+        <div class="form-group">
+          <label>Id tourist*</label>
+          <input
+            [class]='(travelForm.controls["idTourist"].invalid && submitFlag) ? "form-control error":"form-control"'
+            placeholder="Id Tourist" type="number" formControlName="idTourist">
+        </div>
+        <div class="form-group">
+          <label>Id City*</label>
+          <input [class]='(travelForm.controls["idCity"].invalid && submitFlag) ? "form-control error":"form-control"'
+            readOnly="true" placeholder="IdCity" type="number" formControlName="idCity">
+        </div>
+        <div class="form-group">
+          <label>City name*</label>
+          <select
+            [class]='(travelForm.controls["cityName"].invalid && submitFlag) ? "form-control error":"form-control"'
+            formControlName="cityName" (change)='updateIdCity()'>
+            <option *ngFor="let city of cities" [value]="city.id+'-'+city.name">{{city.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Travel date*</label>
+          <input
+            [class]='(travelForm.controls["travelDate"].invalid && submitFlag) ? "form-control error":"form-control"'
+            type="date" formControlName="travelDate">
+        </div>
+        <div class="form-group">
+          <label [class]='submitFlag?  "focusMessage standardMessage":"standardMessage"'>
+            All spaces with * are required
+          </label>
+          <input [autofocus]='submitFlag' type="submit" class="form-control btn btn-success" value="Crear">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
